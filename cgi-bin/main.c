@@ -9,6 +9,7 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
+    printf("Content-Type: text/plain");
     printf("Hello, World!\n");
     return 0;
 }
