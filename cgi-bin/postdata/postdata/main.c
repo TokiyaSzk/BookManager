@@ -83,6 +83,9 @@ int main(void) {
     printf("<p>Age: %s</p>\n", age[0] ? age : "Unknown");
     printf("<p>Email: %s</p>\n", email[0] ? email : "Unknown");
     printf("</body></html>\n");
-
+    FILE *standard ;
+    standard = fopen("/Users/tokya_pt/Desktop/temp/www/cgi-bin/standard.txt", "w");
+    fprintf(standard,"%s %s %s", name,age,email);
+    fclose(standard);
     return 0;
 }
