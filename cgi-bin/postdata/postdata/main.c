@@ -95,7 +95,7 @@ int main(void) {
     system("/usr/bin/python3 login.py");
     sleep(1);
     FILE *return_data;
-    return_data = fopen("/Users/tokya_pt/Desktop/temp/www/cgi-bin/standard.txt", "r");
+    return_data = fopen("/Users/tokya_pt/Desktop/temp/www/cgi-bin/return_data.txt", "r");
     char line[1024];
     char *token =NULL;
     char result[10];
@@ -106,6 +106,7 @@ int main(void) {
         strcpy(result, token);
           
        }
+    fclose(return_data);
     if (strcmp(result, "True")==0) {
         printf("Status: 303 See Other\r\n");
         printf("Location: http://localhost/welcome.html\r\n");
