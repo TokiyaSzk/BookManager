@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <unistd.h>
 
 // 定义缓冲区大小
 #define MAX_BUFFER_SIZE 1024
@@ -70,7 +71,7 @@ int main(void) {
     url_decode(input_buffer, decoded_buffer);
 
     // 打印HTTP响应头
-    printf("Content-Type: text/html\n\n");
+//    printf("Content-Type: text/html\n\n");
 
     // 提取各个参数
     char name[256], password[256], identity[256];
@@ -78,15 +79,43 @@ int main(void) {
     get_param(decoded_buffer, "password", password);
     get_param(decoded_buffer, "identity", identity);
 
-    // 打印响应HTML
-    printf("<html><body>\n");
-    printf("<h1>Hello, %s!</h1>\n", name);
-    printf("<p>password: %s</p>\n", password);
-    printf("<p>conheader: %s</p>\n",identity);
-    printf("</body></html>\n");
+
+    printf("Status: 303 See Other\r\n");
+    printf("Location: http://localhost/welcome.html\r\n");
+    printf("Content-Type: text/html\r\n\r\n");
+//    printf("<html><body>\n");
+//    printf("<h1>Hello, %s!</h1>\n", name);
+//    printf("<p>password: %s</p>\n", password);
+//    printf("<p>conheader: %s</p>\n",identity);
+//    printf("</body></html>\n");
     FILE *standard ;
     standard = fopen("/Users/tokya_pt/Desktop/temp/www/cgi-bin/standard.txt", "w");
     fprintf(standard,"%s %s %s", identity,name,password);
     fclose(standard);
+    system("/usr/bin/python3 login.py");
+    sleep(1);
+    FILE *return_data;
+    return_data = fopen("/Users/tokya_pt/Desktop/temp/www/cgi-bin/standard.txt", "r");
+    char line[1024];
+    char *token =NULL;
+    char result[10];
+    while (fgets(line, sizeof(line), return_data) != NULL) {
+           // 使用strtok分割字符串，这里使用空格作为分隔符
+           token = strtok(line, " ");
+           if (token == NULL) continue; // 如果没有token，跳过这行
+        strcpy(result, token);
+          
+       }
+    if (strcmp(result, "True")==0) {
+        printf("Status: 303 See Other\r\n");
+        printf("Location: http://localhost/welcome.html\r\n");
+        printf("Content-Type: text/html\r\n\r\n");
+    }
+    else{
+        printf("Content-Type: text/html\n\n");
+        printf("<html><body>\n");
+        printf("<h1>login fail</h1>\n");
+        printf("</body></html>\n");
+    }
     return 0;
 }
