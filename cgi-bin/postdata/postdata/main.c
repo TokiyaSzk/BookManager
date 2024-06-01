@@ -78,11 +78,6 @@ int main(void) {
     get_param(decoded_buffer, "name", name);
     get_param(decoded_buffer, "password", password);
     get_param(decoded_buffer, "identity", identity);
-
-
-    printf("Status: 303 See Other\r\n");
-    printf("Location: http://localhost/welcome.html\r\n");
-    printf("Content-Type: text/html\r\n\r\n");
 //    printf("<html><body>\n");
 //    printf("<h1>Hello, %s!</h1>\n", name);
 //    printf("<p>password: %s</p>\n", password);
