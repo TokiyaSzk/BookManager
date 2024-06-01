@@ -4,6 +4,7 @@
 //
 //  Created by Tokya_mac on 2024/6/1.
 //
+//This program is to get post login data
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -72,20 +73,20 @@ int main(void) {
     printf("Content-Type: text/html\n\n");
 
     // 提取各个参数
-    char name[256], age[256], email[256];
+    char name[256], password[256], identity[256];
     get_param(decoded_buffer, "name", name);
-    get_param(decoded_buffer, "age", age);
-    get_param(decoded_buffer, "email", email);
+    get_param(decoded_buffer, "password", password);
+    get_param(decoded_buffer, "identity", identity);
 
     // 打印响应HTML
     printf("<html><body>\n");
-    printf("<h1>Hello, %s!</h1>\n", name[0] ? name : "World");
-    printf("<p>Age: %s</p>\n", age[0] ? age : "Unknown");
-    printf("<p>Email: %s</p>\n", email[0] ? email : "Unknown");
+    printf("<h1>Hello, %s!</h1>\n", name);
+    printf("<p>password: %s</p>\n", password);
+    printf("<p>conheader: %s</p>\n",identity);
     printf("</body></html>\n");
     FILE *standard ;
     standard = fopen("/Users/tokya_pt/Desktop/temp/www/cgi-bin/standard.txt", "w");
-    fprintf(standard,"%s %s %s", name,age,email);
+    fprintf(standard,"%s %s %s", identity,name,password);
     fclose(standard);
     return 0;
 }
