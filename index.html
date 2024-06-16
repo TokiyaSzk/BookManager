@@ -4,19 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
+    <style>
+        .warn{
+            color: red;
+            font-size: 48px;
+        }
+    </style>
 </head>
 <body>
-    <form action="/cgi-bin/postdata.cgi" method="post">
+    <h1 class="warn">请先查询书目具体信息再借阅</h1>
+    <h1 class="warn">注意，由于浏览器缓存等问题，如果没有输出内容</h1>
+    <h1 class="warn">或者内容未更新请刷新！！！！</h1>
+    <form action="/cgi-bin/login.cgi" method="post">
         <label>身份</label>
         <select name="identity" id="identity">
             <option value="login_reader">reader</option>
             <option value="login_admin">admin</option>
         </select><br><br>
-        <label for="name">Name:</label>
+        <label for="name">name:</label>
         <input type="text" id="name" name="name"><br><br>
-        <label for="password">Age:</label>
+        <label for="password">password:</label>
         <input type="text" id="password" name="password"><br><br>
         <button type="submit">登陆</button>
     </form>
+    <a href="/borrow.html">借阅</a>
+    <a href="/return.html">归还</a>
+    <a href="/register_reader.html">读者注册</a>
+    <a href="/booksearch.html">查询</a>
+    <a href="/handborrow.html">手动借书</a>
+    <a href="/adminreturn.html">管理员还书</a>
+
 </body>
 </html>

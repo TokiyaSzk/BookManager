@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is the book search page</h1>
+    <form action="/cgi-bin/booksearch.cgi" method="post">
+        <label for="">操作</label>
+        <select name="identity" id="">
+            <option value="all">输出全部书目</option>
+            <option value="special">精准查找</option>
+        </select>
+        <select name="index" id="">
+            <option value="bname">书名</option>
+            <option value="bid">书号</option>
+            <option value="author">作者</option>
+            <option value="company">出版社</option>
+        </select><br><br>
+        <input type="text" name="data" id=""><br><br>
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>

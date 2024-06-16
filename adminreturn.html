@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is admin return page</h1>
+    <form action="/cgi-bin/adminreturn.cgi" method="post">
+        <label for="">身份</label>
+        <select name="identity" id="">
+            <option value="return_admin">admin</option>
+        </select><br><br>
+        <label for="">name</label>
+        <input type="text" name="name" id=""><br><br>
+        <label for="">password</label>
+        <input type="text" name="password" id=""><br><br>
+        <label for="">书名</label>
+        <input type="text" name="bname" id=""><br><br>
+        <label for="">读者姓名</label>
+        <input type="text" name="rname" id=""><br><br>
+        <button type="submit">提交</button>
+    </form>
+    
+</body>
+</html>

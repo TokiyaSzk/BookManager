@@ -11,11 +11,12 @@ from insert_update_remove import updatebook
 from add_remove_user import updatereader
 from borrow import checkadmin
 from datetime import datetime
+import sys
 #This program is aim to return book
-#This program use 5 paras
+#This program use 6 paras
 #format is con_header username password bookname booknum outnum rname(admin visit)
 def overdar(bname,rid):
-    command = "select returnday from borrowbook where bname = '" +bname+"' and rid = "+rid
+    command = "select returnday from borrowbook where bname = '" +bname+"' and rid = "+str(rid)
     cursor.execute(command)
     cursor_result = cursor.fetchone()
     
@@ -60,10 +61,11 @@ if con_header == "return_reader":
     cursor.execute(command)
     cursor_result = cursor.fetchone()
     if cursor_result == []:
+        
         return_data.write("False")
         print("Bad")
         return_data.close()
-        SystemExit()
+        sys.exit()
     else:
         con_son1 =int(sons[0])+1
         con_son2 =int(sons[1])-1
@@ -79,12 +81,13 @@ if con_header == "return_reader":
         son = (lenum+1,usenum-1)
         #create the tuple son as para to updatereader
         #judege over return day 
-        if overdar(bname, rid) == False :#已逾期
+        if overdar(bname, rid) == True :#已逾期
             print("支付逾期费用")
             if pay == False :#未支付
+                print("是这里")
                 return_data.write("False")
                 return_data.close()
-                SystemExit()
+                sys.exit()
         updatebook(bname, fathers, sons)
         updatereader(name, father, son)
         command = "delete from borrowbook where rid = "
@@ -100,7 +103,7 @@ elif con_header == "return_admin" :
     #rname is reader
     rname = result[6]
     if checkadmin(name, con_pass) == True:
-        command = "select  rid,lenum from reader where rname = "
+        command = "select  rid,lenum,usenum from reader where rname = "
         command += "'" + rname +"'"
         cursor.execute(command)
         cursor_result = cursor.fetchone()
@@ -108,13 +111,17 @@ elif con_header == "return_admin" :
             print("Bad")
             return_data.write("False")
             return_data.close()
-            SystemExit()
+            sys.exit()
         else:
-            sons +=1
+            con_son1 =int(sons[0])+1
+            con_son2 =int(sons[1])-1
+            sons = (con_son1,con_son2)
             lenum = cursor_result[1]
-            father = "lenum"
-            son = lenum+1
+            father = ("lenum","usenum")
+            son1 = int(lenum)+1
+            son2 = int(cursor_result[2])-1
             rid = cursor_result[0]
+            son = (son1,son2)
             updatebook(bname, fathers, sons)
             updatereader(rname, father, son)
             command = "delete from borrowbook where rid = "
@@ -126,12 +133,14 @@ elif con_header == "return_admin" :
     else:
         print("Error")
         return_data.write("False")
-        SystemExit()
+        sys.exit()
 else:
     print("Error")
     return_data.write("False")
     return_data.close()
-    SystemExit()
+    sys.exit()
 return_data.close()
+
+sys.exit()
         
         

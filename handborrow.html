@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is the hand borrow page</h1>
+    <form action="/cgi-bin/handborrow.cgi" method="post">
+        <label for="">身份</label>
+        <select name="identity" id="">
+            <option value="borrow_admin">admin</option>
+        </select><br><br>
+        <label for="">管理员账号</label>
+        <input type="text" name="name" id=""><br><br>
+        <label for="">管理员密码</label>
+        <input type="text" name="password" id=""><br><br>
+        <label for="">书名</label>
+        <input type="text" name="bname" id=""><br><br>
+        <label for="">手动借阅后书本数量</label>
+        <input type="text"  name="bnum" id=""><br><br>
+        <label for="">手动借阅后已借阅数量</label>
+        <input type="text" name="outnum" id=""><br><br>
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    #format is con_header name password con_name booknum outnum 
+    <h1>This is borrow book</h1>
+    <form action="/cgi-bin/borrow.cgi" method="post">
+        <label for="">操作</label>
+        <select name="identity" id="">
+            <option value="borrow_reader">借阅</option>
+            <option value="borrow_reader">预约</option>
+        </select><br><br>
+        <label >name</label>
+        <input type="text" name="name"><br><br>
+        <label for="">password</label>
+        <input type="text" name="password"><br><br>
+        <label for="">书名</label>
+        <input type="text" name="bname" id=""><br><br>
+        <input type="submit" value="提交">
+    </form>
+    
+</body>
+</html>

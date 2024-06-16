@@ -87,7 +87,6 @@ else:
     print("Error")
     return_data.write("False")
     return_data.close()
-    SystemExit()
 return_data.close()
 
 

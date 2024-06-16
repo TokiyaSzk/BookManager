@@ -9,8 +9,9 @@ import mysql.connector
 from insert_update_remove import updatebook
 from add_remove_user import updatereader
 from datetime import datetime, timedelta
+import sys
 #This program is aim to borrow book
-#This program use 6 paras
+#This program use 6 para
 #format is con_header name password con_name booknum outnum 
 conn = mysql.connector.connect(
     host="localhost",
@@ -21,7 +22,7 @@ conn = mysql.connector.connect(
 )
 
 cursor = conn.cursor()
-return_data = open("return_data",mode="w")
+return_data = open("return_data.txt",mode="w")
 def checkadmin(adname,adpass):
     command = "select adname,adpass from admin where adname = "
     command += "'" + adname +"'"
@@ -56,7 +57,7 @@ def insertborrowbook(bname,rname):
     command = "insert into borrowbook (bid,bname,rid,rname,borrowday,returnday) values(%s,%s,%s,%s,%s,%s)"
     cursor.execute(command,values)
     conn.commit()
-    print("insertborrowbook sucess")
+    #print("insertborrowbook sucess")
 file = open("standard.txt",mode="r")
 result = file.read()
 result =result.split()
@@ -79,16 +80,18 @@ if con_header == "borrow_reader":
         print("Bad")
         return_data.write("False")
         return_data.close()
-        SystemExit()
+        sys.exit()
     else:
+        lenum = cursor_result[0]
+        if int(lenum) <= 0:
+            print("You can't borrow")
+            return_data.write("False")
+            return_data.close()
+            sys.exit()
         lenum = cursor_result[0]-1
         usenum = cursor_result[1]+1
         father = ("lenum","usenum")
         son = (lenum,usenum)
-        if int(lenum) == 0:
-            print("You can't borrow")
-            return_data.close()
-            SystemExit()
         #reader only can cut 1 book
         con_sons.append(int(sons[0]))
         con_sons.append(int(sons[1]))
@@ -110,10 +113,9 @@ elif con_header == "borrow_admin" :
         print("Bad")
         return_data.write("False")
         return_data.close()
-        SystemExit()
+        sys.exit()
 else:
     print("Error")
     return_data.write("False")
     return_data.close()
-    SystemExit()
 return_data.close()

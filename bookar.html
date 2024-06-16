@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is the book manager page</h1>
+    <form action="/cgi-bin/bookar.cgi" method="post">
+        <label for="">操作</label>
+        <select name="identity" id="">
+            <option value="book_insert">新增</option>
+            <option value="book_remove">移除</option>
+        </select><br><br>
+        <label for="">书名</label>
+        <input type="text" name="bname"><br><br>
+        <label for="">作者</label>
+        <input type="text" name="author"><br><br>
+        <label for="">出版社</label>
+        <input type="text" name="company"><br><br>
+        <label for="">初始数量</label>
+        <input type="text" name="bnum"><br><br>
+        <label for="">位置</label>
+        <input type="text" name="locate" id=""><br><br>
+        <label for="">入库日期</label>
+        <input type="text" name="inday"><br><br>
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>

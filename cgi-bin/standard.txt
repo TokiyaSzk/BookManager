@@ -1,1 +1,1 @@
-login_reader root tets
+login_admin root root

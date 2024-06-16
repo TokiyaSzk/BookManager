@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is the returnbook page</h1>
+    <form action="/cgi-bin/return_book.cgi" method="post">
+        <label>身份</label>
+        <select name="identity" id="">
+            <option value="return_reader">reader</option>
+        </select><br><br>
+        <label for="">name</label>
+        <input type="text" name="name"><br><br>
+        <label for="">password</label>
+        <input type="text" name="password"><br><br>
+        <label for="">书名</label>
+        <input type="text" name="bname" id=""><br><br>
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>
